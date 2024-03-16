@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_counter_app/provider/count_provider.dart';
+import 'package:provider_counter_app/provider/slider_multi_provider.dart';
+import 'package:provider_counter_app/screens/slider_screen.dart';
 import 'package:provider_counter_app/screens/home_screen.dart';
 
 void main() {
@@ -12,11 +14,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CountProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CountProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SliderMultiProvider(),
+        ),
+      ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyHomeScreen(),
+        home: SliderScreen(),
       ),
     );
   }
